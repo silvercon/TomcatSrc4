@@ -61,7 +61,6 @@
  *
  */
 
-
 package org.apache.catalina;
 
 import org.apache.catalina.net.ServerSocketFactory;
@@ -120,31 +119,19 @@ import org.apache.catalina.net.ServerSocketFactory;
 
 public interface Connector {
 
-
     // ------------------------------------------------------------- Properties
 
-
     /**
-     * Return the Container used for processing requests received by this
-     * Connector.
+     * 获取HttpConnector的Servlet容器，并由HttpProcessor调用起invoke方法
      */
     public Container getContainer();
 
-
-    /**
-     * Set the Container used for processing requests received by this
-     * Connector.
-     *
-     * @param container The new Container to use
-     */
     public void setContainer(Container container);
-
 
     /**
      * Return the "enable DNS lookups" flag.
      */
     public boolean getEnableLookups();
-
 
     /**
      * Set the "enable DNS lookups" flag.
@@ -153,26 +140,17 @@ public interface Connector {
      */
     public void setEnableLookups(boolean enableLookups);
 
-
     /**
-     * Return the server socket factory used by this Container.
+     * 获取Socket工厂
      */
     public ServerSocketFactory getFactory();
 
-
-    /**
-     * Set the server socket factory used by this Container.
-     *
-     * @param factory The new server socket factory
-     */
     public void setFactory(ServerSocketFactory factory);
-
 
     /**
      * Return descriptive information about this Connector implementation.
      */
     public String getInfo();
-
 
     /**
      * Return the port number to which a request should be redirected if
@@ -181,7 +159,6 @@ public interface Connector {
      */
     public int getRedirectPort();
 
-
     /**
      * Set the redirect port number.
      *
@@ -189,29 +166,18 @@ public interface Connector {
      */
     public void setRedirectPort(int redirectPort);
 
-
     /**
-     * Return the scheme that will be assigned to requests received
-     * through this connector.  Default value is "http".
+     * 协议
      */
     public String getScheme();
 
-
-    /**
-     * Set the scheme that will be assigned to requests received through
-     * this connector.
-     *
-     * @param scheme The new scheme
-     */
     public void setScheme(String scheme);
-
 
     /**
      * Return the secure connection flag that will be assigned to requests
      * received through this connector.  Default value is "false".
      */
     public boolean getSecure();
-
 
     /**
      * Set the secure connection flag that will be assigned to requests
@@ -221,12 +187,10 @@ public interface Connector {
      */
     public void setSecure(boolean secure);
 
-
     /**
      * Return the <code>Service</code> with which we are associated (if any).
      */
     public Service getService();
-
 
     /**
      * Set the <code>Service</code> with which we are associated (if any).
@@ -235,16 +199,13 @@ public interface Connector {
      */
     public void setService(Service service);
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Create (or allocate) and return a Request object suitable for
      * specifying the contents of a Request to the responsible Container.
      */
     public Request createRequest();
-
 
     /**
      * Create (or allocate) and return a Response object suitable for
@@ -258,7 +219,6 @@ public interface Connector {
      *
      * @exception LifecycleException If this server was already initialized.
      */
-    public void initialize()
-    throws LifecycleException;
+    public void initialize() throws LifecycleException;
 
 }
