@@ -14,29 +14,29 @@
     <!-- Define servlet-mapped and path-mapped example filters -->
     <filter>
         <filter-name>Servlet Mapped Filter</filter-name>
-        <filter-class>filters.ExampleFilter</filter-class>
+        <filter-class>org.apache.classes.ExampleFilter</filter-class>
 	<init-param>
 	    <param-name>attribute</param-name>
-	    <param-value>filters.ExampleFilter.SERVLET_MAPPED</param-value>
+	    <param-value>org.apache.classes.ExampleFilter.SERVLET_MAPPED</param-value>
 	</init-param>
     </filter>
     <filter>
         <filter-name>Path Mapped Filter</filter-name>
-        <filter-class>filters.ExampleFilter</filter-class>
+        <filter-class>org.apache.classes.ExampleFilter</filter-class>
 	<init-param>
 	    <param-name>attribute</param-name>
-	    <param-value>filters.ExampleFilter.PATH_MAPPED</param-value>
+	    <param-value>org.apache.classes.ExampleFilter.PATH_MAPPED</param-value>
 	</init-param>
     </filter>
     <filter>
         <filter-name>Request Dumper Filter</filter-name>
-        <filter-class>filters.RequestDumperFilter</filter-class>
+        <filter-class>org.apache.classes.RequestDumperFilter</filter-class>
     </filter>
 
     <!-- Example filter to set character encoding on each request -->
     <filter>
         <filter-name>Set Character Encoding</filter-name>
-        <filter-class>filters.SetCharacterEncodingFilter</filter-class>
+        <filter-class>org.apache.classes.SetCharacterEncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
             <param-value>EUC_JP</param-value>
@@ -45,7 +45,7 @@
 
     <filter>
         <filter-name>Compression Filter</filter-name>
-        <filter-class>compressionFilters.CompressionFilter</filter-class>
+        <filter-class>org.apache.classes.CompressionFilter</filter-class>
 
         <init-param>
           <param-name>compressionThreshold</param-name>
@@ -93,10 +93,10 @@
 
     <!-- Define example application events listeners -->
     <listener>
-        <listener-class>listeners.ContextListener</listener-class>
+        <listener-class>org.apache.classes.ContextListener</listener-class>
     </listener>
     <listener>
-        <listener-class>listeners.SessionListener</listener-class>
+        <listener-class>org.apache.classes.SessionListener</listener-class>
     </listener>
 
     <!-- Define servlets that are included in the example application -->
