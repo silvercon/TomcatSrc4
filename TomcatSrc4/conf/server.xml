@@ -83,11 +83,11 @@
     -->
 
     <!-- Define a non-SSL Coyote HTTP/1.1 Connector on port 8080 -->
-    <Connector className="org.apache.coyote.tomcat4.CoyoteConnector"
-               port="8080" minProcessors="5" maxProcessors="75"
-               enableLookups="true" redirectPort="8443"
-               acceptCount="10" debug="0" connectionTimeout="20000"
-               useURIValidationHack="false" />
+<!--     <Connector className="org.apache.coyote.tomcat4.CoyoteConnector" -->
+<!--                port="8080" minProcessors="5" maxProcessors="75" -->
+<!--                enableLookups="true" redirectPort="8443" -->
+<!--                acceptCount="10" debug="0" connectionTimeout="20000" -->
+<!--                useURIValidationHack="false" /> -->
     <!-- Note : To disable connection timeouts, set connectionTimeout value 
      to -1 -->
 
@@ -129,12 +129,10 @@
     -->
 
     <!-- Define a non-SSL legacy HTTP/1.1 Test Connector on port 8083 -->
-    <!--
     <Connector className="org.apache.catalina.connector.http.HttpConnector"
-               port="8083" minProcessors="5" maxProcessors="75"
+               port="8080" minProcessors="5" maxProcessors="75"
                enableLookups="true" redirectPort="8443"
                acceptCount="10" debug="0" />
-    -->
 
     <!-- Define a non-SSL HTTP/1.0 Test Connector on port 8084 -->
     <!--
@@ -252,9 +250,7 @@
              a different directory with the "directory" attribute.  Specify either a
              relative (to $CATALINA_HOME) or absolute path to the desired
              directory.-->
-        <Logger className="org.apache.catalina.logger.FileLogger"
-                 directory="logs"  prefix="localhost_log." suffix=".txt"
-	        timestamp="true"/>
+        <Logger className="org.apache.catalina.logger.SystemErrLogger" />
 
         <!-- Define properties for each web application.  This is only needed
              if you want to set non-default properties, or have web application
@@ -269,9 +265,7 @@
         <!-- Tomcat Examples Context -->
         <Context path="/examples" docBase="examples" debug="0"
                  reloadable="true" crossContext="true">
-          <Logger className="org.apache.catalina.logger.FileLogger"
-                     prefix="localhost_examples_log." suffix=".txt"
-        	  timestamp="true"/>
+          <Logger className="org.apache.catalina.logger.SystemErrLogger" />
           <Ejb   name="ejb/EmplRecord" type="Entity"
                  home="com.wombat.empl.EmployeeRecordHome"
                remote="com.wombat.empl.EmployeeRecord"/>

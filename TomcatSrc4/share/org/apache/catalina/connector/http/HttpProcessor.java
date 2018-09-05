@@ -109,7 +109,7 @@ final class HttpProcessor implements Lifecycle, Runnable {
     // ----------------------------------------------------- Manifest Constants
 
     /**
-     * Server information string for this server.
+     * 服务器信息
      */
     private static final String SERVER_INFO = ServerInfo.getServerInfo()
             + " (HTTP/1.1 Connector)";
@@ -146,7 +146,7 @@ final class HttpProcessor implements Lifecycle, Runnable {
     private boolean available = false;
 
     /**
-     * The HttpConnector with which this processor is associated.
+     * HTTP连接器
      */
     private HttpConnector connector = null;
 
@@ -161,7 +161,7 @@ final class HttpProcessor implements Lifecycle, Runnable {
     private int id = 0;
 
     /**
-     * The lifecycle event support for this component.
+     * 生命周期支持
      */
     private LifecycleSupport lifecycle = new LifecycleSupport(this);
 
@@ -177,7 +177,7 @@ final class HttpProcessor implements Lifecycle, Runnable {
     private static final char[] SESSION_ID = match.toCharArray();
 
     /**
-     * The string parser we will use for parsing request lines.
+     * String解析器
      */
     private StringParser parser = new StringParser();
 
@@ -192,12 +192,12 @@ final class HttpProcessor implements Lifecycle, Runnable {
     private int proxyPort = 0;
 
     /**
-     * The HTTP request object we will pass to our associated container.
+     * HTTP请求
      */
     private HttpRequestImpl request = null;
 
     /**
-     * The HTTP response object we will pass to our associated container.
+     * HTTP响应
      */
     private HttpResponseImpl response = null;
 
@@ -207,24 +207,20 @@ final class HttpProcessor implements Lifecycle, Runnable {
     private int serverPort = 0;
 
     /**
-     * The string manager for this package.
+     * string manager
      */
     protected StringManager sm = StringManager.getManager(Constants.Package);
 
     /**
-     * The socket we are currently processing a request for.  This object
-     * is used for inter-thread communication only.
+     * 接收到的Socket
      */
     private Socket socket = null;
 
     /**
-     * Has this component been started yet?
+     * 生命周期标志
      */
     private boolean started = false;
 
-    /**
-     * The shutdown signal to our background thread
-     */
     private boolean stopped = false;
 
     /**
@@ -233,17 +229,17 @@ final class HttpProcessor implements Lifecycle, Runnable {
     private Thread thread = null;
 
     /**
-     * The name to register for the background thread.
+     * 线程名称
      */
     private String threadName = null;
 
     /**
-     * The thread synchronization object.
+     * 线程锁对象
      */
     private Object threadSync = new Object();
 
     /**
-     * Keep alive indicator.
+     * HTTP是否为持久连接
      */
     private boolean keepAlive = false;
 
@@ -277,7 +273,7 @@ final class HttpProcessor implements Lifecycle, Runnable {
     // private char[] lineBuffer = new char[4096];
 
     /**
-     * Request line buffer.
+     * HTTP请求行
      */
     private HttpRequestLine requestLine = new HttpRequestLine();
 
@@ -289,7 +285,7 @@ final class HttpProcessor implements Lifecycle, Runnable {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Return a String value representing this object.
+     * ??
      */
     public String toString() {
 
@@ -299,7 +295,8 @@ final class HttpProcessor implements Lifecycle, Runnable {
 
     // -------------------------------------------------------- Package Methods
 
-    /**1、线程：HttpConnector、HttpProcessor
+    /**
+     * 1、线程：HttpConnector、HttpProcessor
      * 2、assign()属于HttpConnector线程，await()属于HttpProcessor线程
      * 3、参考PV操作和生产/消费者模型
      */
@@ -351,11 +348,6 @@ final class HttpProcessor implements Lifecycle, Runnable {
 
     }
 
-    /**
-     * Log a message on the Logger associated with our Container (if any)
-     *
-     * @param message Message to be logged
-     */
     private void log(String message) {
 
         Logger logger = connector.getContainer().getLogger();
@@ -364,12 +356,6 @@ final class HttpProcessor implements Lifecycle, Runnable {
 
     }
 
-    /**
-     * Log a message on the Logger associated with our Container (if any)
-     *
-     * @param message Message to be logged
-     * @param throwable Associated exception
-     */
     private void log(String message, Throwable throwable) {
 
         Logger logger = connector.getContainer().getLogger();
@@ -1132,43 +1118,24 @@ final class HttpProcessor implements Lifecycle, Runnable {
 
     // ------------------------------------------------------ Lifecycle Methods
 
-    /**
-     * Add a lifecycle event listener to this component.
-     *
-     * @param listener The listener to add
-     */
     public void addLifecycleListener(LifecycleListener listener) {
 
         lifecycle.addLifecycleListener(listener);
 
     }
 
-    /**
-     * Get the lifecycle listeners associated with this lifecycle. If this 
-     * Lifecycle has no listeners registered, a zero-length array is returned.
-     */
     public LifecycleListener[] findLifecycleListeners() {
 
         return lifecycle.findLifecycleListeners();
 
     }
 
-    /**
-     * Remove a lifecycle event listener from this component.
-     *
-     * @param listener The listener to add
-     */
     public void removeLifecycleListener(LifecycleListener listener) {
 
         lifecycle.removeLifecycleListener(listener);
 
     }
 
-    /**
-     * Start the background thread we will use for request processing.
-     *
-     * @exception LifecycleException if a fatal startup error occurs
-     */
     public void start() throws LifecycleException {
 
         if (started)
@@ -1181,11 +1148,6 @@ final class HttpProcessor implements Lifecycle, Runnable {
 
     }
 
-    /**
-     * Stop the background thread we will use for request processing.
-     *
-     * @exception LifecycleException if a fatal shutdown error occurs
-     */
     public void stop() throws LifecycleException {
 
         if (!started)

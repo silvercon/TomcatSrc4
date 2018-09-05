@@ -155,15 +155,11 @@ public final class Bootstrap {
             SecurityClassLoad.securityClassLoad(catalinaLoader);
 
             // Instantiate a startup class instance
-            if (debug >= 1)
-                log("Loading startup class");
             Class startupClass = catalinaLoader
                 .loadClass("org.apache.catalina.startup.Catalina");
             Object startupInstance = startupClass.newInstance();
 
             // Set the shared extensions class loader
-            if (debug >= 1)
-                log("Setting startup class properties");
             String methodName = "setParentClassLoader";
             Class paramTypes[] = new Class[1];
             paramTypes[0] = Class.forName("java.lang.ClassLoader");
@@ -174,8 +170,6 @@ public final class Bootstrap {
             method.invoke(startupInstance, paramValues);
 
             // Call the process() method
-            if (debug >= 1)
-                log("Calling startup class process() method");
             methodName = "process";
             paramTypes = new Class[1];
             paramTypes[0] = args.getClass();
